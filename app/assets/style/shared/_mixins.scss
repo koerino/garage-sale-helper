@@ -40,8 +40,8 @@
 //hover effect for links
 @mixin link($colour) {
     color: $colour;
+    text-decoration: none;
     &:hover {
-        text-decoration: none;
         cursor: pointer;
         color: darken($colour, 10%);
     }
