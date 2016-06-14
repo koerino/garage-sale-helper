@@ -9,5 +9,6 @@ lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean, SbtWeb
 libraryDependencies ++= Seq(
   javaJdbc,
   cache,
-  javaWs
+  javaWs,
+  "mysql" % "mysql-connector-java" % "5.1.36"
 )

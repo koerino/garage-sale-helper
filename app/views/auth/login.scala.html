@@ -2,20 +2,36 @@
 
     <div class='auth-containers'>
         
-        <h1>WELCOME TO YARD SALE HELPER, PLEASE LOG IN</h1>
-       
-        <div>
-            <span>USERNAME</span>
-            <input type='text' name='username'>
-        </div>
+        <h1>WELCOME TO THE ULTIMATE YARD SALE HELPER, PLEASE LOG IN</h1>
         
-        <div>
-            <span>PASSWORD</span>
-            <input type='password' name='pwd'>
-        </div>
+        <form id='login-form'>
+            <div>
+                <span>USERNAME</span>
+                <input type='text' name='username'>
+            </div>
         
-        <a class='blue-btn'>LOG IN</a>
-        <span>Don't Have an Account yet? &nbsp; <a class='auth-link' href='/signup'>Sign Up Here!</a></span>
+            <div>
+                <span>PASSWORD</span>
+                <input type='password' name='pwd'>
+            </div>
+        
+            <div id='btns'>
+                <a class='blue-btn' onclick="check(document.getElementById('login-form'));">LOG IN</a>
+                <a class='red-btn' onclick="document.getElementById('login-form').reset();">CLEAR</a>
+            </div>
+        </form>
+        
+        <script>
+            function check(form) {
+                if (form.username.value == 'user' && form.pwd.value == 'pass') {
+                    window.open('/success');
+                } else {
+                    alert("Wrong username or password, please enter the correct one.");
+                }
+            }    
+        </script>
+        
+        <span>Don't Have an Account yet? &nbsp; <a class='auth-link'  href='/signup'>Sign Up Here!</a></span>
         
     </div>
 

@@ -3,6 +3,7 @@
 # Authetication
 GET     /                           controllers.AuthController.index
 GET     /signup                controllers.AuthController.signup
+GET     /success               controllers.AuthController.success
 
 # User routes
 GET     /user                    controllers.UserController.profile

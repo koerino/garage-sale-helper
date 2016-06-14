@@ -5,3 +5,5 @@ target
 tmp
 .sass-cache
 .map
+application.conf
+conf/evolutions

@@ -13,4 +13,7 @@ public class AuthController extends Controller {
     public Result signup() {
         return ok(signup.render());
     }
+    public Result success() {
+        return ok(success.render());
+    }
 }

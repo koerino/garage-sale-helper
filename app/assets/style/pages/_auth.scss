@@ -30,6 +30,12 @@
             border-color: darken($platinum, 10%);
         }
     }
+    #btns {
+        @include center;
+    }
+    .red-btn {
+        margin-left: 1.25em;
+    }
     
     .auth-link {
         @include link($blue-ivy);
