@@ -1,0 +1,20 @@
+#user-profile {
+    padding: 2em;
+    @include center(column);
+    align-items: flex-start;
+    h5 {
+        @include font(22px);
+        margin: 0 0 2em 0.75em;
+    }
+    div {
+        margin: 1em 0;
+        span {
+            display: inline-block;
+            margin: 0 1em;
+        }
+    }
+    a {
+        display: inline-block;
+        margin-left: 1em;
+    }
+}

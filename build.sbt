@@ -1,4 +1,4 @@
-name := """yard-sell-helper"""
+name := """yard-sale-helper"""
 
 version := "1.0"
 
