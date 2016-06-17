@@ -48,18 +48,13 @@
     i {
         font-size: 20px;
     }
+    a {
+        @include link($light-blue-grey);
+    }
 }
 #leftmost {
     width: 60%;
 }
 #rightmost {
     border-right: none;
-}
-//to-be-updated
-#top-nav-dropdown {
-    position: absolute;
-    visibility: collapse;
-}
-#main-content {
-    width: inherit;
 }

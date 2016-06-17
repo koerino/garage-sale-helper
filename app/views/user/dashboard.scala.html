@@ -13,12 +13,13 @@
         <div id='dashboard-main'>
             <div id='top-nav'>
                 <span id='leftmost'>Welcome to Yard Sale Helper</span>
-                <span>(Option)</span>
+                <span><a href='/logout'>LOG OUT</a></span>
                 <span><i class="fa fa-cog"></i></span>
-                <span id='rightmost'>User's Name (Type)</span>
-                <div id='top-nav-dropdown'>
-                    <span></span>
-                </div>
+                @if(session.isEmpty) {
+                <span id='rightmost'>Hello, please <a href='/'>log in</a>.</span>
+                } else {
+                    <span id='rightmost'>@session.get("name")</span>
+                }
             </div>
             <div id='main-content'>
                 @content

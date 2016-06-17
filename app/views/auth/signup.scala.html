@@ -1,8 +1,10 @@
+@(signupMsg: String)
+
 @main("Guest Sign Up") {
 
     <div class='auth-containers'>
                
-        <form id='signup-form'>
+        <form id='signup-form' method="post" action="/signup/register">
             <div>
                 <span>USERNAME</span>
                 <input type='text' name='username'>
@@ -24,10 +26,11 @@
             </div>
             
             <div id='btns'>
-                <a class='blue-btn'>SIGN UP</a>
+                <a class='blue-btn' onclick="document.getElementById('signup-form').submit();">SIGN UP</a>
                 <a class='red-btn' onclick="document.getElementById('signup-form').reset();">CLEAR</a>
             </div>
         </form>
+        <span id='signupMsg'>@signupMsg</span>
         
         <span>Already have an account? &nbsp; <a class='auth-link' href='/'>Log in!</a></span>
         

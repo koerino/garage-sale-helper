@@ -36,10 +36,12 @@
     .red-btn {
         margin-left: 1.25em;
     }
-    
     .auth-link {
         @include link($blue-ivy);
         display: inline-block;
-        margin-top: 1.5em;
+        margin-top: 1em;
+    }
+    #loginMsg, #signupMsg {
+        margin-top: 2em;
     }
 }

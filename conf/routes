@@ -1,9 +1,11 @@
 # Routes
 
 # Authetication
-GET     /                           controllers.AuthController.index
-GET     /signup                controllers.AuthController.signup
-GET     /success               controllers.AuthController.success
+GET       /                           controllers.AuthController.index
+POST     /login                   controllers.AuthController.authenticate
+GET       /signup                controllers.AuthController.signup
+POST     /signup/register   controllers.AuthController.register
+GET       /logout                 controllers.AuthController.logout 
 
 # User routes
 GET     /user                    controllers.UserController.profile
