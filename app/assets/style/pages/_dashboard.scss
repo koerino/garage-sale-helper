@@ -1,26 +1,44 @@
 #dashboard-container {
     width: 100%;
     height: 100%;
+    background-color: lighten($pale-grey, 3%);
 }
 #dashboard-nav {
     width: 25%;
     height: inherit;
     position: fixed;
     background-color: $blue-grey;
+    h2 {
+        @include font(22px);
+        color: lighten($light-grey, 20%);
+        margin: 1em 0 0 1em;
+    }
     ul {
         width: 100%;
         @include center(column);
-        align-items: flex-start;
         padding: 2em 0;
         li {
             @include font(18px);
-            color: $light-grey;
+            color: lighten($light-grey, 20%);
+            text-shadow: 1px 1px $blue-grey;
+            width: inherit;
+            height: 4.5em;
+            line-height: 4.5em;
+            vertical-align: middle;
+            &:hover {
+                cursor: pointer;
+                background-color: lighten($blue-grey, 10%);
+            }
+            @include transition(all, 0.5s, linear);
             img {
                 width: 48px;
                 height: 48px;
                 vertical-align: middle;
-                margin-left: 4.25em;
-                margin-right: 1em;
+                margin: 0 1.25em 0 3em;
+            }
+            a {
+                text-decoration: none;
+                color: lighten($light-grey, 20%);
             }
         }
     }
@@ -35,8 +53,10 @@
     width: 100%;
     height: 3.5em;
     line-height: 3.5em;
+    background-color: $white;
     @include center;
-    color: $light-blue-grey;
+    color: $light-grey;
+    text-shadow: 1px 2px $pale-grey;
     border-bottom: 1px solid $platinum;
     span {
         border-right: 1px solid $platinum;
@@ -44,12 +64,16 @@
         line-height: inherit;
         padding: 0 1.5em;
         text-align: center;
+        &.nav-option:hover {
+            cursor: pointer;
+            background-color: lighten($pale-grey, 2%);
+        }
     }
     i {
         font-size: 20px;
     }
     a {
-        @include link($light-blue-grey);
+        @include link($light-grey);
     }
 }
 #leftmost {
@@ -57,4 +81,9 @@
 }
 #rightmost {
     border-right: none;
+}
+#create-sale-msg {
+    color: $light-red;
+    font-size: 13px;
+    text-align: center;
 }

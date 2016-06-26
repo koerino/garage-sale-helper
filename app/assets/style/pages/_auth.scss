@@ -11,7 +11,7 @@
     h1 {
         @include font(18px);
         margin-bottom: 1em;
-        color: $dark-grey;
+        color: $blue-grey;
     }
     
     span, input {
@@ -43,5 +43,6 @@
     }
     #loginMsg, #signupMsg {
         margin-top: 2em;
+        color: $light-red;
     }
 }
