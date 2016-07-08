@@ -30,13 +30,14 @@
         $(".info").show();
         $("#save").addClass("show");
     });
+    
     //send update profile request to the server
     $("#save").click(function() {
         var req = {};
         $(".info").map(function() {
             req[$(this).attr("name")] = $(this).val();
         });
-        $.post('/profile/edit',
+        $.post('/profile',
             req,
             function(data, status) {
                 location.reload();
@@ -46,12 +47,14 @@
         $("#save").removeClass("show");
         $("#edit, #pwd, .text").show();
     });
+    
     //toggle change password option
     $('#pwd').click(function() {
         $("#pass").toggle();
         $("#pass input").val("");
         $('#pass-status').text("");
     });
+    
     //send password change request to the server
     $('#save-pass').click(function() {
         var req = {};
@@ -66,6 +69,7 @@
         );
     });
 </script>
+    
 </div>
 
 }
