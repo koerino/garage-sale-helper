@@ -17,6 +17,12 @@
                 <li onclick="window.location.href = '/user'"><img src="@routes.Assets.versioned("img/browse-sales.svg")">Browse Sales</li>
                 <li onclick="window.location.href = '/profile'"><img src="@routes.Assets.versioned("img/setting.svg")">User Profile</li>
                 <li onclick="window.location.href = '/tag'"><img src="@routes.Assets.versioned("img/tag.svg")">Print tags</li>
+                @if(session.get("username") == "admin") {
+                    <li onclick="window.location.href = '/accounts'"><img src="@routes.Assets.versioned("img/admin.svg")">Manage Users</li>
+                }
+                @if(session.get("username") == "bookkeeper") {
+                    <li onclick="window.location.href = '/report'"><img src="@routes.Assets.versioned("img/bookkeeper.svg")">Financial Report</li>
+                }
             </ul>
         </div>
         

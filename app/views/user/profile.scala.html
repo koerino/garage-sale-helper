@@ -37,12 +37,17 @@
         $(".info").map(function() {
             req[$(this).attr("name")] = $(this).val();
         });
-        $.post('/profile',
-            req,
-            function(data, status) {
+        $.ajax({
+            url: '/profile',
+            type: "PUT",
+            data: req,
+            success: function(data, status) {
                 location.reload();
+            },
+            error: function() {
+                console.log("Error occurs. Please try again.")
             }
-        );
+        });
         $(".info").hide();
         $("#save").removeClass("show");
         $("#edit, #pwd, .text").show();
@@ -61,12 +66,17 @@
         $(".pass").map(function() {
             req[$(this).attr("name")] = $(this).val();
         });
-        $.post('/profile/changepass',
-            req,
-            function(data, status) {
+        $.ajax({
+            url: '/profile/changepass',
+            type: "PUT",
+            data: req,
+            success: function(data, status) {
                 $('#pass-status').text(data);
+            },
+            error: function() {
+                console.log("Error occurs. Please try again.")
             }
-        );
+        });
     });
 </script>
     
