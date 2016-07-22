@@ -128,8 +128,6 @@
                                 var value = $('.quantity-input', $item).val();
                                 var stock = $('.cart-item-stock', $item).text();
                                 if (value > stock) {
-                                    console.log(value);
-                                    console.log(stock);
                                     $('#quantity-msg').text("Not enough item left in stock.");
                                     return;
                                 }
