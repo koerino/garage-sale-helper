@@ -20,39 +20,45 @@ import views.html.sale.item;
 import views.html.tag.tag;
 import views.html.tag.itemTag;
 import views.html.tag.catalogTags;
+
 /**
  * Controller for a sale.
  */
 public class SaleController extends Controller {
+    
     /**
      * Get the catalog of a specific sale given the sale id.
      * @param id the id of the sale.
      * @return result of API call.
      */
-    public final Result index(final int id) {
+    public Result index(int id) {
         Sale sale = Sale.findById(id);
         List<Item> list = Item.findBySale(id);
         return ok(catalog.render(sale, list));
     }
+    
     /**
      * Get the image of a sale.
      * @param id the id of the sale.
      * @return result of API call.
      */
-    public final Result getSaleImg(final int id) {
+    public Result getSaleImg(int id) {
         Sale sale = Sale.findById(id);
         return ok(sale.getImage());
     }
+    
     /**
      * Save a new sale to the database.
      * @return result of API call.
      */
-    public final Result add() {
+    public Result add() {
+        
         Sale newSale = new Sale();
         String title = Form.form().bindFromRequest().get("title");
         String location = Form.form().bindFromRequest().get("location");
         MultipartFormData<File> body = request().body().asMultipartFormData();
         FilePart<File> imageFile = body.getFile("file");
+        
         /**
          * Read the image file as byte array if image is uploaded.
          */
@@ -77,15 +83,16 @@ public class SaleController extends Controller {
         User user = User.findById(session().get("username"));
         user.setRoles(user.getRoles() + " & " + newRoles);
         user.save();
-        
         return ok("Sale added successfully.");
     }
+    
     /**
      * Close a sale.
      * @param id the id of the sale which is to be closed.
      * @return result of API call.
      */
-    public final Result remove(final int id) {
+    public Result remove(int id) {
+        
         Sale sale = Sale.findById(id);
         List<Item> list = Item.findBySale(id);
         list.forEach((item) -> item.delete());
@@ -97,30 +104,34 @@ public class SaleController extends Controller {
         
         return ok("Sale closed.");
     }
+    
     /**
      * Get a specific item given id.
      * @param id the id of the item.
      * @return result of API call.
      */
-    public final Result getItem(final int id) {
+    public Result getItem(int id) {
         Item entry = Item.findById(id);
         Sale sale = Sale.findById(entry.getSaleId());
         return ok(item.render(sale, entry));
     }
+    
     /**
      * Get the image of an item.
      * @param id the id of the item.
      * @return result of API call.
      */
-    public final Result getItemImg(final int id) {
+    public Result getItemImg(int id) {
         Item item = Item.findById(id);
         return ok(item.getImage());
     }
+    
     /**
      * Add an item to the catalog of the chosen sale.
      * @return result of API call.
      */
-    public final Result addItem() {
+    public Result addItem() {
+        
         Item newItem = new Item();
         String title = Form.form().bindFromRequest().get("title");
         String description = Form.form().bindFromRequest().get("description");
@@ -132,6 +143,7 @@ public class SaleController extends Controller {
         int saleId = Integer.parseInt(idStr);
         MultipartFormData<File> body = request().body().asMultipartFormData();
         FilePart<File> imageFile = body.getFile("file");
+        
         /**
          * Read the image file as byte array if image is uploaded.
          */
@@ -156,11 +168,13 @@ public class SaleController extends Controller {
         sale.save();
         return ok("Item added successfully.");
     }
+    
     /**
      * Update an item.
      * @return result of API call.
      */
-    public final Result editItem() {
+    public Result editItem() {
+        
         String title = Form.form().bindFromRequest().get("title");
         String description = Form.form().bindFromRequest().get("description");
         String priceStr = Form.form().bindFromRequest().get("price");
@@ -170,6 +184,7 @@ public class SaleController extends Controller {
         MultipartFormData<File> body = request().body().asMultipartFormData();
         FilePart<File> imageFile = body.getFile("file");
         Item item = Item.findById(itemId);
+        
         /**
          * Read the image file as byte array if image is uploaded.
          */
@@ -198,31 +213,34 @@ public class SaleController extends Controller {
         item.save();
         return ok("Item updated successfully.");
     }
+    
     /**
      * Render the print tag page.
      * @return result of API call.
      */
-    public final Result tag() {
+    public Result tag() {
         return ok(tag.render());
     }
+    
     /**
      * Fetch information about an item and render the tag.
      * @param id the id of the item.
      * @return result of API call.
      */
-    public final Result printTag(final int id) {
+    public Result printTag(int id) {
         Item item = Item.findById(id);
         if (item == null) {
             item = new Item();
         }
         return ok(itemTag.render(item));
     }
+    
     /**
      * Fetch information about a catalog and render the tags.
      * @param id the id of the sale whose catalog is to be rendered.
      * @return result of API call.
      */
-    public final Result printTags(final int id) {
+    public Result printTags(int id) {
         List<Item> list = Item.findBySale(id);
         return ok(catalogTags.render(list));
     }

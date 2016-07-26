@@ -13,21 +13,26 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.google.common.base.Splitter;
+
 /**
  * Controller for transactions.
  */
 public class TranController extends Controller {
+    
     /**
      * Save a new transaction to the database and decrease item quantities.
      * @return result of API call.
      */
-    public final Result addTransaction() {
+    public Result addTransaction() {
+        
         String userId = session().get("username");
         User user = User.findById(userId);
+        
         //clear user cart.
         List<Item> userCart = user.getCart();
         userCart.clear();
         user.save();
+        
         //decrease item quantities.
         String cartStr = Form.form().bindFromRequest().get("cart");
         Map<String, String> cart = splitToMap(cartStr);
@@ -48,6 +53,7 @@ public class TranController extends Controller {
                 }
             }
         }
+        
         //save the transaction.
         Transaction transaction = new Transaction();
         String totalStr = Form.form().bindFromRequest().get("total");
@@ -57,12 +63,13 @@ public class TranController extends Controller {
         transaction.save();
         return ok("Transaction added.");
     }
+    
     /**
      * Split the input string into a map.
      * @param in the input string.
      * @return the map after the split.
      */
-    private Map<String, String> splitToMap(final String in) {
+    private Map<String, String> splitToMap(String in) {
         return Splitter.on(" ").withKeyValueSeparator("=").split(in);
     }
 }

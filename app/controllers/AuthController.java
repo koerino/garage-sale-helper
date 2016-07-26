@@ -10,45 +10,62 @@ import models.User;
 
 import views.html.auth.login;
 import views.html.auth.signup;
+
 /**
  * Controller for authenticating users.
  */
 public class AuthController extends Controller {
+    
     /**
-     * form
+     * Form.
      */
     @Inject
     private FormFactory formF;
-
+    
     /**
-     * bad login string
+     * Password max length.
+     */
+    private static int PWD = 8;
+    
+    /**
+     * Amount of bad login allowed.
+     */
+    private static int BAD = 3;
+    
+    /**
+     * Bad login field.
      */
     private String badLogin = "badLogin";
+    
     /**
      * Render login page as home page.
      * @return result of API call
      */
-    public final Result index() {
+    public Result index() {
         return ok(login.render(""));
     }
+    
     /**
      * Render signup page.
      * @return result of API call
      */
-    public final Result signup() {
+    public Result signup() {
         return ok(signup.render(""));
     }
+    
     /**
      * Authenticate user. Return response with message if authentication
      * fails. Otherwise redirect the user to the user home page.
      * @return result of API call
      */
-    public final Result authenticate() {
+    public Result authenticate() {
+        
         String username = Form.form().bindFromRequest().get("username");
         String pwd = Form.form().bindFromRequest().get("pwd");
         if (username.isEmpty() || pwd.isEmpty()) {
             return ok(login.render("Please complete all the fields."));
         }
+        
         User user = User.findById(username);
         if (user == null) {
             return ok(login.render("User not found"));
@@ -62,14 +79,14 @@ public class AuthController extends Controller {
                 int b = Integer.parseInt(bad) + 1;
                 session(badLogin, Integer.toString(b));
             }
-            if (Integer.parseInt(session().get(badLogin)) > 3) {
+            if (Integer.parseInt(session().get(badLogin)) >= BAD) {
                 user.setLocked(true);
                 user.save();
-                return ok(login.render("Account locked due to" 
-                                       + "multiple failed login attempts. " 
+                return ok(login.render("Account locked due to"
+                                       + "multiple failed login attempts. "
                                        + "Please contact the admin."));
             }
-            return ok(login.render("Authentication fails. " 
+            return ok(login.render("Authentication fails. "
                                    + "Please check your credentials."));
         } else {
             session(badLogin, "0");
@@ -78,26 +95,29 @@ public class AuthController extends Controller {
             return redirect("/user");
         }
     }
+    
     /**
-     * User registration. 
+     * User registration.
      * Store new user if all the fields are complete and validated.
      * Otherwise, return response with message.
      * @return result of API call
      */
-    public final Result register() {
+    public Result register() {
+        
         String username = Form.form().bindFromRequest().get("username");
         String pwd = Form.form().bindFromRequest().get("pwd");
         String email = Form.form().bindFromRequest().get("email");
         String name = Form.form().bindFromRequest().get("name");
         String roles = "Guest";
-        if (username.isEmpty() || pwd.isEmpty() 
+        
+        if (username.isEmpty() || pwd.isEmpty()
             || email.isEmpty() || name.isEmpty()) {
             return ok(signup.render("Please complete all the fields."));
         }
         if (username.contains(" ")) {
             return ok(signup.render("Username cannot contain whitespace."));
         }
-        if (pwd.length() < 8) {
+        if (pwd.length() < PWD) {
             return ok(signup.render("Password must be at least 8 characters."));
         }
         if (email.indexOf(' ') != -1 || email.indexOf('@') == -1
@@ -106,6 +126,7 @@ public class AuthController extends Controller {
             || email.lastIndexOf('.') - email.indexOf('@') <= 1) {
             return ok(signup.render("Please enter a valid email."));
         }
+        
         User user = User.findById(username);
         if (user != null) {
             return ok(signup.render("User already exists. "
@@ -115,15 +136,16 @@ public class AuthController extends Controller {
             User newUser = userForm.bindFromRequest().get();
             newUser.setRoles(roles);
             newUser.save();
-            return ok(signup.render("Registration successful! " 
+            return ok(signup.render("Registration successful! "
                                     + "Now you can log in."));
         }
     }
+    
     /**
      * End current user session.
      * @return result of API call
      */
-    public final Result logout() {
+    public Result logout() {
         session().clear();
         return redirect("/");
     }

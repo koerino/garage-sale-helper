@@ -16,7 +16,7 @@ import javax.inject.*;
 @Singleton
 public class AtomicCounter implements Counter {
 
-    private final AtomicInteger atomicCounter = new AtomicInteger();
+    private AtomicInteger atomicCounter = new AtomicInteger();
 
     @Override
     public int nextCount() {

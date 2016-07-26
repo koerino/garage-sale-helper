@@ -4,88 +4,62 @@ import com.avaje.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.List;
+
 /**
- * Transaction entity.
+ * Represents a transaction.
  */
 @Entity
 public class Transaction extends Model {
-    /**
-     * Unique ID.
-     */
+    
     @Id
     private int transactionId;
-    /**
-     * Each customer is given an ID.
-     */
+
     private String customerId;
-    /**
-     * The total of each sale.
-     */
     private double total;
+    
     /**
      * Finder.
      */
-     private static Finder<Integer, Transaction> find 
+     private static Finder<Integer, Transaction> find
         = new Finder(Transaction.class);
     
     /**
-     * Find all transactions
+     * Find all transactions.
      * @return the transaction list found
      */
     public static List<Transaction> findAll() {
-        List<Transaction> list = find.all();
-        return list;
+        return find.all();
     }
     
     /**
      * Getters for private fields.
      */
-    
-    /**
-     * Get the transaction's ID.
-     * @return the transaction's ID.
-     */
-    public final int getTransactionId() {
+
+    public int getTransactionId() {
         return transactionId;
     }
-    /**
-     * Get the customer's ID.
-     * @return customer's ID.
-     */
-    public final String getCustomerId() {
+
+    public String getCustomerId() {
         return customerId;
     }
-    /**
-     * Get the transactional total.
-     * @return the transactional total.
-     */
-    public final double getTotal() {
+
+    public double getTotal() {
         return total;
     }
     
     /**
      * Setters for private fields.
      */
-    
-    /**
-     * Set the transaction's ID.
-     * @param transactionIdNew the transaction's new ID.
-     */
-    public final void setTransactionId(final int transactionIdNew) {
+
+    public void setTransactionId(int transactionIdNew) {
         this.transactionId = transactionIdNew;
     }
-    /**
-     * Set the customer's ID.
-     * @param customerIdNew the customer's new.
-     */
-    public final void setCustomerId(final String customerIdNew) {
+   
+    public void setCustomerId(String customerIdNew) {
         this.customerId = customerIdNew;
     }
-    /**
-     * Set the transaction total.
-     * @param totalNew the transaction total.
-     */
-    public final void setTotal(final double totalNew) {
+   
+    public void setTotal(double totalNew) {
         this.total = totalNew;
     }
 }

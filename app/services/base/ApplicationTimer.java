@@ -24,9 +24,9 @@ import play.inject.ApplicationLifecycle;
 @Singleton
 public class ApplicationTimer {
 
-    private final Clock clock;
-    private final ApplicationLifecycle appLifecycle;
-    private final Instant start;
+    private Clock clock;
+    private ApplicationLifecycle appLifecycle;
+    private Instant start;
 
     @Inject
     public ApplicationTimer(Clock clock, ApplicationLifecycle appLifecycle) {
