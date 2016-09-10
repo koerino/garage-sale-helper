@@ -67,7 +67,7 @@
             req[$(this).attr("name")] = $(this).val();
         });
         $.ajax({
-            url: '/profile/changepass',
+            url: '/profile/password',
             type: "PUT",
             data: req,
             success: function(data, status) {

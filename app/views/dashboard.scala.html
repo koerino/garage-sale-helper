@@ -16,9 +16,9 @@
                 <li id='open-sale'><img src="@routes.Assets.versioned("img/new-sale.svg")">Open a Sale</li>
                 <li onclick="window.location.href = '/user'"><img src="@routes.Assets.versioned("img/browse-sales.svg")">Browse Sales</li>
                 <li onclick="window.location.href = '/profile'"><img src="@routes.Assets.versioned("img/setting.svg")">User Profile</li>
-                <li onclick="window.location.href = '/tag'"><img src="@routes.Assets.versioned("img/tag.svg")">Print tags</li>
+                <li onclick="window.location.href = '/tags'"><img src="@routes.Assets.versioned("img/tag.svg")">Print tags</li>
                 @if(session.get("username") == "admin") {
-                    <li onclick="window.location.href = '/accounts'"><img src="@routes.Assets.versioned("img/admin.svg")">Manage Users</li>
+                    <li onclick="window.location.href = '/users'"><img src="@routes.Assets.versioned("img/admin.svg")">Manage Users</li>
                 }
                 @if(session.get("username") == "bookkeeper") {
                     <li onclick="window.location.href = '/report'"><img src="@routes.Assets.versioned("img/bookkeeper.svg")">Financial Report</li>
@@ -70,7 +70,7 @@
         <div id='dashboard-main'>
             <div id='top-nav'>
                 <span id='leftmost'>WELCOME TO GARAGE SALE HELPER</span>
-                <span class='nav-option' onclick="window.location.href = '/logout'">LOG OUT</span>
+                <span class='nav-option' onclick="window.location.href = '/index'">LOG OUT</span>
                 <span class='nav-option' onclick="window.location.href = '/cart'"><i class="fa fa-shopping-cart"></i></span>
                 @if(session.isEmpty()) {
                     <span id='rightmost'>HELLO, PLEASE <a href='/'>LOG IN</a>.</span>
@@ -106,7 +106,7 @@
                 !formData.get('location').length) {
                 $("#create-sale-msg").text("Please enter title and location."); 
             } else $.ajax({
-                url: '/sale',
+                url: '/sales',
                 type: "POST",
                 contentType: false,
                 data: formData,

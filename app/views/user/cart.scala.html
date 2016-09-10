@@ -16,7 +16,7 @@
                         <div class='cart-item-container'>
                     
                             @if(item.getImage() != null) {
-                                <div class='cart-item-pic' style='background-image: url(/item/img/@item.getItemId())'></div>
+                                <div class='cart-item-pic' style='background-image: url(/items/images/@item.getItemId())'></div>
                             } else {
                                 <div class='cart-item-img'><span>No Image Yet</span></div>
                             }
@@ -134,7 +134,7 @@
                             req['total'] = Math.round(subtotal() * 100) / 100;
                             req['cart'] = cart.trim();
                             $.ajax({
-                                url: '/transaction',
+                                url: '/transactions',
                                 type: 'POST',
                                 data: req,
                                 success: function(data, status) {

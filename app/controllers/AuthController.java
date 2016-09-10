@@ -41,7 +41,7 @@ public class AuthController extends Controller {
      * Render login page as home page.
      * @return result of API call
      */
-    public Result index() {
+    public Result home() {
         return ok(login.render(""));
     }
     
@@ -142,10 +142,10 @@ public class AuthController extends Controller {
     }
     
     /**
-     * End current user session.
+     * End current user session and return to index page.
      * @return result of API call
      */
-    public Result logout() {
+    public Result index() {
         session().clear();
         return redirect("/");
     }

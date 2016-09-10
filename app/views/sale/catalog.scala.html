@@ -20,9 +20,9 @@
     
     <ul>
         @for(entry <- items) {
-            <li class='list-item-container' onclick="window.location.href = '/item/' + @entry.getItemId()">
+            <li class='list-item-container' onclick="window.location.href = '/items/' + @entry.getItemId()">
                 @if(entry.getImage() != null) {
-                    <div class='list-item-pic' style='background-image: url(/item/img/@entry.getItemId())'></div>
+                    <div class='list-item-pic' style='background-image: url(/items/images/@entry.getItemId())'></div>
                 } else {
                     <div class='list-item-img'>No Image Yet</div>
                 }
@@ -80,7 +80,7 @@
                  formData.get('stock') < 0) {
             $("#add-item-msg").text("Please enter valid price/stock.");
         } else $.ajax({
-            url: '/item',
+            url: '/items',
             type: "POST",
             contentType: false,
             data: formData,
@@ -127,7 +127,7 @@
     //send close sale request to server
     $("#confirm-close").click(function() {
         $.ajax({
-            url: '/sale/@sale.getSaleId()',
+            url: '/sales/@sale.getSaleId()',
             type: 'DELETE',
             success: function(data, status) {
                 window.location.href = '/user';

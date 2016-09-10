@@ -1,41 +1,41 @@
 # Routes
 
 # Authetication routes
-GET       /                           controllers.AuthController.index
-POST     /login                   controllers.AuthController.authenticate
-GET       /signup                controllers.AuthController.signup
-POST     /signup                controllers.AuthController.register
-GET       /logout                 controllers.AuthController.logout 
+GET       /                           controllers.AuthController.home
+POST     /session                controllers.AuthController.authenticate
+GET       /users/new             controllers.AuthController.signup
+POST     /users                   controllers.AuthController.register
+GET       /index                   controllers.AuthController.index 
 
 # User routes
 GET     /user                    controllers.UserController.index
 GET    /profile                 controllers.UserController.profile
 PUT    /profile                 controllers.UserController.editProfile 
-PUT    /profile/changepass   controllers.UserController.changePass
+PUT    /profile/password     controllers.UserController.changePass
 GET     /cart                    controllers.UserController.getCart
 POST   /cart                    controllers.UserController.addToCart
 DELETE   /cart/:id          controllers.UserController.removeFromCart(id: Integer)
-GET     /accounts             controllers.UserController.accounts
-PUT     /accounts/:id       controllers.UserController.toggleStatus(id: String)
+GET     /users                  controllers.UserController.accounts
+PUT     /users/:id       controllers.UserController.toggleStatus(id: String)
 GET     /report                 controllers.UserController.report
 
 # Sale routes
-GET     /sale/:id               controllers.SaleController.index(id: Integer)
-GET     /sale/img/:id       controllers.SaleController.getSaleImg(id: Integer)
-POST   /sale                     controllers.SaleController.add
-DELETE  /sale/:id            controllers.SaleController.remove(id: Integer)
-GET     /item/:id              controllers.SaleController.getItem(id: Integer)
-GET     /item/img/:id      controllers.SaleController.getItemImg(id: Integer)
-POST   /item                    controllers.SaleController.addItem
-PUT     /item                    controllers.SaleController.editItem
+GET     /sales/:id               controllers.SaleController.index(id: Integer)
+GET     /sales/images/:id       controllers.SaleController.getSaleImg(id: Integer)
+POST   /sales                     controllers.SaleController.add
+DELETE  /sales/:id            controllers.SaleController.remove(id: Integer)
+GET     /items/:id              controllers.SaleController.getItem(id: Integer)
+GET     /items/images/:id      controllers.SaleController.getItemImg(id: Integer)
+POST   /items                    controllers.SaleController.addItem
+PUT     /items                    controllers.SaleController.editItem
 
 # Sale-related routes
-GET     /tag                      controllers.SaleController.tag
-GET     /tag/item/:id       controllers.SaleController.printTag(id: Integer)
-GET     /tag/sale/:id        controllers.SaleController.printTags(id: Integer)
+GET     /tags                      controllers.SaleController.tag
+GET     /tags/items/:id       controllers.SaleController.printTag(id: Integer)
+GET     /tags/sales/:id        controllers.SaleController.printTags(id: Integer)
 
 # Transaction route
-POST     /transaction           controllers.TranController.addTransaction
+POST     /transactions           controllers.TranController.addTransaction
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file          controllers.Assets.versioned(path="/public", file: Asset)

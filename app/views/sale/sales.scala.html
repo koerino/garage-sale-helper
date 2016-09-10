@@ -8,9 +8,9 @@
     
     <ul>
         @for(listing <- sales) {
-            <li class='list-item-container' onclick="window.location.href = '/sale/' + @listing.getSaleId()">
+            <li class='list-item-container' onclick="window.location.href = '/sales/' + @listing.getSaleId()">
                 @if(listing.getImage() != null) {
-                    <div class='list-item-pic' style='background-image: url(/sale/img/@listing.getSaleId())'></div>
+                    <div class='list-item-pic' style='background-image: url(/sales/images/@listing.getSaleId())'></div>
                 } else {
                     <div class='list-item-img'>No Image Yet</div>
                 }

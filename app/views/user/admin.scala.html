@@ -21,7 +21,7 @@
             <script>
                 $('#update-status-@index').click(function() {
                     $.ajax({
-                        url: '/accounts/@user.getUsername()',
+                        url: '/users/@user.getUsername()',
                         type: 'PUT',
                         success: function(data, status) {
                             location.reload();
